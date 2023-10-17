@@ -1,67 +1,68 @@
 .App {
-  text-align: center;
+	text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+	height: 40vmin;
+	pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+	background-color: #282c34;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	font-size: calc(10px + 2vmin);
+	color: white;
 }
 
 .App-link {
-  color: #61dafb;
+	color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 }
 
 li {
-  list-style-type: none;
-  margin-bottom: 50px;
+	list-style-type: none;
+	margin-bottom: 50px;
 }
 
 .commentsList {
-  padding-left: 0;
-  text-align: left;
+	padding-left: 0;
+	text-align: left;
 }
 
 .commentCard {
-  margin-bottom: 15px;
+	margin-bottom: 15px;
 }
+
 .commentCard p {
-  margin: 0;
+	margin: 0;
 }
 
 ul {
-  padding-left: 0;
+	padding-left: 0;
 }
 
 .categories h2 {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .categories h3 {
-  margin-top: 0;
+	margin-top: 0;
 }

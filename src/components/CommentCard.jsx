@@ -1,5 +1,5 @@
 const CommentCard = ({ body, author, votes, created_at }) => (
-    <div className="commentCard">
+    <div>
         <p>{author}</p>
         <p>{body}</p>
         <p>votes: {votes}</p>

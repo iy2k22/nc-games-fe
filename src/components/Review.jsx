@@ -32,12 +32,13 @@ const Review = () => {
             <p>{review.review_body}</p>
             <h4>votes: {review.votes}</h4>
             <h4>created at: {review.created_at}</h4>
+	    <br />
             {commentLoading ? (<Loading />) : (
                 <div className="comments">
                     <h3>Comments ({comments.length})</h3>
                     <ul className="commentsList">
                         {comments.map((comment) => (
-                            <li key={comment.comment_id}>
+                            <li key={comment.comment_id} className="commentCard">
                                 <CommentCard
                                 body={comment.body}
                                 author={comment.author}
