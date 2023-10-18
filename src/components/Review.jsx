@@ -10,8 +10,9 @@ const Review = () => {
 	const [commentLoading, setCommentLoading] = useState(false);
 	const [review, setReview] = useState({});
 	const [comments, setComments] = useState([]);
-	const [voted, setVoted] = useState(false);
 	const [votes, setVotes] = useState(0);
+	const [currentlyVoting, setCurrentlyVoting] = useState(false);
+	const [voted, setVoted] = useState(false);
 	const [voteSuccessful, setVoteSuccessful] = useState(true);
 
 	useEffect(() => {
@@ -34,19 +35,18 @@ const Review = () => {
 		<h3>by {review.owner}</h3>
 		<img src={review.review_img_url} alt={review.title} />
 		<p>{review.review_body}</p>
-		<h4 onClick={async () => {
-			if (!voteSuccessful) setVoteSuccessful(true);
-			const oldVotes = votes;
-			setVotes(voted ? votes - 1 : votes + 1);
-			const patchSuccess = await patchReview(review_id, voted);
-			if (patchSuccess) {
+		<h4>votes: {votes}</h4>
+		{currentlyVoting ? (<button type="button" disabled>{voted && "un"}voting...</button>) : (<button type="button" onClick={async () => {
+			setCurrentlyVoting(true);
+			const result = await patchReview(review_id, voted);
+			setVoteSuccessful(result);
+			if (result) {
+				setVotes(voted ? votes - 1 : votes + 1);
 				setVoted(!voted);
-			} else {
-				setVotes(oldVotes);
-				setVoteSuccessful(false);
 			}
-		}}>votes: {votes}</h4>
-		{voteSuccessful ? null : (<h4 className="err">vote failed</h4>)}
+			setCurrentlyVoting(false);
+		}}>{voted && "un"}vote</button>)}
+		{!currentlyVoting && !voteSuccessful ? (<h4 className="err">vote failed</h4>) : null}
 		<h4>created at: {review.created_at}</h4>
 		<br />
 		{commentLoading ? (<Loading />) : (
