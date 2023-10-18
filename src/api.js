@@ -31,3 +31,14 @@ export const getReviewsByCategory = async (category) => {
 	});
 	return categoryReviewsData.data;
 }
+
+export const patchReview = async (review_id, voted) => {
+	try {
+		await instance.patch(`/api/reviews/${review_id}`, {
+			inc_votes: voted ? -1 : 1
+		});
+		return true;
+	} catch (e) {
+		return false;
+	}
+}

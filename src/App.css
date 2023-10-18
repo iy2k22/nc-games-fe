@@ -66,3 +66,7 @@ ul {
 .categories h3 {
 	margin-top: 0;
 }
+
+.err {
+	color: red;
+}
