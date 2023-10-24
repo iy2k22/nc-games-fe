@@ -19,7 +19,7 @@ const CategoryList = () => {
         <ul className="categories">
             {categories.map((category) => (
                 <li key={category.slug}>
-                    <Link to={`/categories/${category.slug}`}>
+                    <Link to={`/reviews?category=${category.slug}`}>
                         <h2>{category.slug}</h2>
                     </Link>
                     <h3>{category.description}</h3>

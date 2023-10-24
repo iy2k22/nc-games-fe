@@ -3,9 +3,14 @@ import axios from "axios";
 const baseUrl = "https://be-nc-games-jnf9.onrender.com";
 const instance = axios.create({ baseURL: baseUrl });
 
-export const getReviews = async () => {
-	const reviewData = await instance.get('/api/reviews');
-	return reviewData.data;
+export const getReviews = async (params) => {
+	try {
+		const reviewData = await instance.get('/api/reviews', { params: params });
+		return reviewData.data;
+	} catch (e) {
+		console.log(e);
+		return [];
+	}
 }
 
 export const getReview = async (review_id) => {
@@ -23,15 +28,6 @@ export const getCategories = async () => {
 	return categoryData.data;
 }
 
-export const getReviewsByCategory = async (category) => {
-	const categoryReviewsData = await instance.get('/api/reviews', {
-		params: {
-			category: category
-		}
-	});
-	return categoryReviewsData.data;
-}
-
 export const patchReview = async (review_id, negative) => {
 	try {
 		await instance.patch(`/api/reviews/${review_id}`, {
@@ -45,11 +41,9 @@ export const patchReview = async (review_id, negative) => {
 
 export const postComment = async (review_id, comment) => {
 	try {
-		console.log(comment);
 		await instance.post(`/api/reviews/${review_id}/comments`, comment);
 		return true;
 	} catch (e) {
-		console.log(e);
 		return false;
 	}
 }
