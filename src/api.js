@@ -32,13 +32,24 @@ export const getReviewsByCategory = async (category) => {
 	return categoryReviewsData.data;
 }
 
-export const patchReview = async (review_id, voted) => {
+export const patchReview = async (review_id, negative) => {
 	try {
 		await instance.patch(`/api/reviews/${review_id}`, {
-			inc_votes: voted ? -1 : 1
+			inc_votes: negative ? -1 : 1
 		});
 		return true;
 	} catch (e) {
+		return false;
+	}
+}
+
+export const postComment = async (review_id, comment) => {
+	try {
+		console.log(comment);
+		await instance.post(`/api/reviews/${review_id}/comments`, comment);
+		return true;
+	} catch (e) {
+		console.log(e);
 		return false;
 	}
 }

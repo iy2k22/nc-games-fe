@@ -70,3 +70,12 @@ ul {
 .err {
 	color: red;
 }
+
+textarea#body {
+	height: 100px;
+	width: 35%;
+}
+
+.commentForm {
+	text-align: left;
+}
