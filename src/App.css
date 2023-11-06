@@ -79,3 +79,7 @@ textarea#body {
 .commentForm {
 	text-align: left;
 }
+
+nav ul li {
+	margin-bottom: 5px;
+}

@@ -47,3 +47,12 @@ export const postComment = async (review_id, comment) => {
 		return false;
 	}
 }
+
+export const deleteComment = async (comment_id) => {
+	try {
+		await instance.delete(`/api/comments/${comment_id}`);
+		return true;
+	} catch (e) {
+		return false;
+	}
+}

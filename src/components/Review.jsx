@@ -43,6 +43,7 @@ const Review = () => {
 			{comments.map((comment) => (
 				<li key={comment.comment_id} className="commentCard">
 				<CommentCard
+				id={comment.comment_id}
 				body={comment.body}
 				author={comment.author}
 				votes={comment.votes}
