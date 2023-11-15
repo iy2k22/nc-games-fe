@@ -7,10 +7,12 @@ const CommentCard = ({ id, body, author, votes, created_at }) => {
     const [err, setErr] = useState(false);
     return deleted ? (<p>Comment deleted.</p>) : (
         <div>
-            <p>{author}</p>
+            <p className="commentAuthor">{author}</p>
             <p>{body}</p>
-            <p>votes: {votes}</p>
-            <p>created at: {created_at}</p>
+            <div id="likeAndTime">
+                <p><i className="fa fa-thumbs-up" aria-hidden="true"></i> {votes}</p>
+                <p><i className="fa fa-calendar-o" aria-hidden="true"></i> {created_at}</p>
+            </div>
             {!buttonClicked ? <button onClick={async () => {
                 setButtonClicked(true);
                 setErr(false);
@@ -21,7 +23,7 @@ const CommentCard = ({ id, body, author, votes, created_at }) => {
                     setButtonClicked(false);
                     setErr(true);
                 }
-            }}>Delete</button> : <button disabled>Delete</button>}
+            }} className="btn btn-danger"><i className="fa fa-trash"></i> Delete</button> : <button className="btn btn-danger" disabled><i className="fa fa-trash"></i> Delete</button>}
             {err && <p className="err">Comment could not be deleted.</p>}
         </div>
     )

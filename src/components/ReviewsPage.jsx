@@ -8,54 +8,52 @@ const ReviewsPage = () => {
     const [loading, setLoading] = useState(false);
     const [reviews, setReviews] = useState([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [sortBy, setSortBy] = useState();
-    const [orderBy, setOrderBy] = useState();
     const params = {};
     
     useEffect(() => {
         for (let [key, value] of searchParams) {
             params[key] = value;
         }
-        if (sortBy) params["sort_by"] = sortBy;
-        if (orderBy) params["order"] = orderBy;
         setLoading(true);
         getReviews(params).then((result) => {
             setLoading(false);
             setReviews(result.reviews);
         })
-    }, [sortBy, orderBy]);
+    }, []);
     
     return loading ? (<Loading />) : (
-        <div className="reviews">
+        <section className="reviews">
             <ReviewList reviews={reviews} />
-            <form className="sort_by">
-                <input type="radio" name={sortBy} value="comment_count" onClick={(e) => {
-                    setSortBy(e.target.value);
-                }} />
-                <label>Comment Count</label>
-
-                <input type="radio" name={sortBy} value="votes" onClick={(e) => {
-                    setSortBy(e.target.value);
-                }} />
-                <label>Votes</label>
-
-                <input type="radio" name={sortBy} value="created_at" onClick={(e) => {
-                    setSortBy(e.target.value);
-                }} />
-                <label>Date</label>
+            <form id="reviewSort">
+                <div className="formSection">
+                    <label>Sort by:</label>
+                    <span className="pair">
+                        <input type="radio" id="comment_count" name="sort_by" value="comment_count" />
+                        <label for="comment_count">Comment Count</label>
+                    </span>
+                    <span className="pair">
+                        <input type="radio" id="date" name="sort_by" value="created_at" />
+                        <label for="date">Date</label>
+                    </span>
+                    <span className="pair">
+                        <input type="radio" id="votes" name="sort_by" value="votes" />
+                        <label for="votes">Votes</label>
+                    </span>
+                </div>
+                <div className="formSection">
+                    <label>Order:</label>
+                    <span className="pair">
+                        <input type="radio" id="ascending" name="order" value="asc" />
+                        <label for="ascending">Ascending</label>
+                    </span>
+                    <span className="pair">
+                        <input type="radio" id="descending" name="order" value="desc" />
+                        <label for="descending">Descending</label>
+                    </span>
+                </div>
+                <input type="submit" value="Resort" id="sortButton" />
             </form>
-            <form className="order_by">
-                <input type="radio" name={orderBy} value="asc" onClick={(e) => {
-                    setOrderBy(e.target.value);
-                }} />
-                <label>Ascending</label>
-                
-                <input type="radio" name={orderBy} value="desc" onClick={(e) => {
-                    setOrderBy(e.target.value);
-                }} />
-                <label>Descending</label>
-            </form>
-        </div>
+        </section>
     );
 }
 

@@ -27,34 +27,36 @@ const Review = () => {
 	}, [review_id]);
 
 	return loading ? (<Loading />) : (
-		<div className="review">
-		<h2>{review.title}</h2>
-		<h3>by {review.owner}</h3>
-		<img src={review.review_img_url} alt={review.title} />
-		<p>{review.review_body}</p>
-		<VoteButtons id={review_id} review_votes={review.votes} />
-		<h4>created at: {review.created_at}</h4>
-		<br />
-		{commentLoading ? (<Loading />) : (
-			<div className="comments">
-			<h3>Comments ({comments.length})</h3>
-			<CommentForm id={review_id}/>
-			<ul className="commentsList">
-			{comments.map((comment) => (
-				<li key={comment.comment_id} className="commentCard">
-				<CommentCard
-				id={comment.comment_id}
-				body={comment.body}
-				author={comment.author}
-				votes={comment.votes}
-				created_at={comment.created_at}
-				/>
-				</li>
-			))}
-			</ul>
+		<section className="review">
+			<div className="reviewBody">
+				<h2>{review.title}</h2>
+				<h3>by {review.owner}</h3>
+				<h4><i className="fa fa-calendar-o" aria-hidden="true"></i> {review.display_date}</h4>
+				<img src={review.review_img_url} alt={review.title} />
+				<p>{review.review_body}</p>
 			</div>
-		)}
-		</div>
+				<VoteButtons id={review_id} review_votes={review.votes} />
+			<br />
+			{commentLoading ? (<Loading />) : (
+				<div id="comments" className="reviewBody">
+					<h3>Comments ({comments.length})</h3>
+					<CommentForm id={review_id} />
+					<ul className="commentsList">
+						{comments.map((comment) => (
+							<li key={comment.comment_id} className="commentCard">
+								<CommentCard
+									id={comment.comment_id}
+									body={comment.body}
+									author={comment.author}
+									votes={comment.votes}
+									created_at={comment.display_date}
+								/>
+							</li>
+						))}
+					</ul>
+				</div>
+			)}
+		</section>
 	)
 }
 

@@ -10,8 +10,8 @@ const VoteButtons = ({ id, review_votes }) => {
     
     return (
         <div className="voteButtons">
-            <h4>Like: {votes}</h4>
-            {!currentlyVoting && !disliked ? (<button type="button" onClick={async () => {
+            <h4 style={{color: (liked || disliked) ? "blue" : "black"}}><i className="fa fa-thumbs-up" aria-hidden="true"></i> {votes}</h4>
+            {!currentlyVoting && !disliked ? (<button className="btn btn-primary" type="button" onClick={async () => {
                 setCurrentlyVoting(true);
                 const result = await patchReview(id, liked);
                 setSuccess(result);
@@ -20,10 +20,10 @@ const VoteButtons = ({ id, review_votes }) => {
                     setLiked(!liked);
                 }
                 setCurrentlyVoting(false);
-            }}>{liked ? "Unl" : "L"}ike</button>) : (
-                <button type="button" disabled>{liked ? "Unl" : "L"}ike</button>
+            }}><i className="fa fa-thumbs-up"></i> {liked ? "Unl" : "L"}ike</button>) : (
+                <button className="btn btn-primary" type="button" disabled><i className="fa fa-thumbs-up"></i> {liked ? "Unl" : "L"}ike</button>
             )}
-            {!currentlyVoting && !liked ? (<button type="button" onClick={async () => {
+            {!currentlyVoting && !liked ? (<button className="btn btn-primary" type="button" onClick={async () => {
                 setCurrentlyVoting(true);
                 const result = await patchReview(id, !disliked);
                 setSuccess(result);
@@ -32,8 +32,8 @@ const VoteButtons = ({ id, review_votes }) => {
                     setDisliked(!disliked);
                 }
                 setCurrentlyVoting(false);
-            }}>{disliked ? "Und" : "D"}islike</button>) : (
-                <button type="button" disabled>{disliked ? "Und" : "D"}islike</button>
+            }}><i className="fa fa-thumbs-down"></i> {disliked ? "Und" : "D"}islike</button>) : (
+                <button className="btn btn-primary" type="button" disabled><i className="fa fa-thumbs-down"></i> {disliked ? "Und" : "D"}islike</button>
             )}
             {!success && (<h4 className="err">Vote failed</h4>)}
         </div>
