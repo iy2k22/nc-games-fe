@@ -8,7 +8,7 @@ const ReviewsPage = () => {
     const [loading, setLoading] = useState(false);
     const [reviews, setReviews] = useState([]);
     const [empty, setEmpty] = useState(false)
-    const [searchParams, setSearchParams] = useSearchParams();
+    const searchParams = useSearchParams()[0];
     const params = {};
     
     useEffect(() => {
@@ -22,6 +22,7 @@ const ReviewsPage = () => {
                 setEmpty(true);
             setReviews(result.reviews);
         })
+        // eslint-disable-next-line
     }, []);
     
     return loading ? (<Loading />) : (
