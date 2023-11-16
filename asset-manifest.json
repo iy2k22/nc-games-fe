@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/nc-games-fe/static/css/main.165c498b.css",
+    "main.js": "/nc-games-fe/static/js/main.4eb2a5ba.js",
+    "static/js/787.bd598666.chunk.js": "/nc-games-fe/static/js/787.bd598666.chunk.js",
+    "index.html": "/nc-games-fe/index.html",
+    "main.165c498b.css.map": "/nc-games-fe/static/css/main.165c498b.css.map",
+    "main.4eb2a5ba.js.map": "/nc-games-fe/static/js/main.4eb2a5ba.js.map",
+    "787.bd598666.chunk.js.map": "/nc-games-fe/static/js/787.bd598666.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.165c498b.css",
+    "static/js/main.4eb2a5ba.js"
+  ]
+}
