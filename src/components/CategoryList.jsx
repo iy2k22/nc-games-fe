@@ -16,13 +16,13 @@ const CategoryList = () => {
     }, [])
     
     return loading ? (<Loading />) : (
-        <ul className="categories">
+        <ul className="categories container block">
             {categories.map((category) => (
-                <li key={category.slug}>
-                    <Link to={`/reviews?category=${category.slug}`}>
-                        <h2>{category.slug}</h2>
+                <li key={category.slug} className="row align-items-center category">
+                    <Link to={`/reviews?category=${category.slug}`} className="col-lg-6 col-md-6 col-sm-4">
+                        <h2>{category.display_name}</h2>
                     </Link>
-                    <h3>{category.description}</h3>
+                    <h3 className="col-lg-4 col-md-4 col-sm-4">{category.description}</h3>
                 </li>
             ))}
         </ul>

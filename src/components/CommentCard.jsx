@@ -1,5 +1,6 @@
 import { deleteComment } from "../api";
 import { useState } from "react";
+const { user } = require('../defaults.json');
 
 const CommentCard = ({ id, body, author, votes, created_at }) => {
     const [deleted, setDeleted] = useState(false);
@@ -13,7 +14,7 @@ const CommentCard = ({ id, body, author, votes, created_at }) => {
                 <p><i className="fa fa-thumbs-up" aria-hidden="true"></i> {votes}</p>
                 <p><i className="fa fa-calendar-o" aria-hidden="true"></i> {created_at}</p>
             </div>
-            {!buttonClicked ? <button onClick={async () => {
+            {user !== author ? null : !buttonClicked ? <button onClick={async () => {
                 setButtonClicked(true);
                 setErr(false);
                 const result = await deleteComment(id);

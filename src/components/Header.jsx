@@ -4,7 +4,7 @@ const Header = () => (
     <header>
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
             <div className="container-fluid">
-                <Link className="navbar-brand" to="#">NC Games</Link>
+                <Link className="navbar-brand" to="/">NC Games</Link>
                 <div id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">

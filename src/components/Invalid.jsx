@@ -1,5 +1,5 @@
 const Invalid = () => (
-    <h2>Invalid</h2>
+    <h1 className="err">Error: URL not found</h1>
 );
 
 export default Invalid;

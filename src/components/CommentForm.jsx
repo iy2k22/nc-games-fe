@@ -1,35 +1,36 @@
 import { useState } from "react";
 import { postComment } from "../api";
+const { user } = require('../defaults.json');
 
 const CommentForm = ({ id }) => {
-    const [username, setUsername] = useState('');
     const [body, setBody] = useState('');
-    const [success, setSuccess] = useState(true);
+    const [success, setSuccess] = useState(false);
+    const [err, setErr] = useState(false);
     const [currentlyPosting, setCurrentlyPosting] = useState(false);
+    console.log(user);
     return (
         <div className="commentForm">
             <form onSubmit={async (e) => {
                 e.preventDefault();
+                setSuccess(false);
+                setErr(false);
                 setCurrentlyPosting(true);
                 const result = await postComment(id, {
-                    "username": username,
+                    "username": user,
                     "body": body
                 });
-                setSuccess(result);
+                const resultFunc = result ? setSuccess : setErr;
+                resultFunc(true);
                 setCurrentlyPosting(false);
             }} className="commentForm">
                 <div>
-                    <label>Username: </label>
-                    <input type="text" value={username} required placeholder="Your name here..." onChange={(e) => setUsername(e.target.value)} />
-                </div>
-                <br />
-                <div>
-                    <label>Body: </label>
+                    <label>Comment: </label>
                     <textarea id="body" value={body} required placeholder="Your comment here..." onChange={(e) => setBody(e.target.value)} />
                 </div>
-                <input type="submit" />
+                {!currentlyPosting ? (<input type="submit" className="btn btn-success" id="submitBtn" />) : (<input type="submit" className="btn btn-success" id="submitBtn" disabled />)}
             </form>
-            {!currentlyPosting && !success ? <p className="err">User {username} is not registered</p> : null}
+            {!currentlyPosting && success ? <p>Comment posted.</p> : null}
+            {!currentlyPosting && err ? <p className="err">Comment could not be posted</p> : null}
         </div>
     );
 }

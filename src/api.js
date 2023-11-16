@@ -14,8 +14,13 @@ export const getReviews = async (params) => {
 }
 
 export const getReview = async (review_id) => {
+	try {
 	const reviewData = await instance.get(`/api/reviews/${review_id}`);
 	return reviewData.data;
+	} catch (e) {
+		console.log(e);
+		return false;
+	}
 }
 
 export const getComments = async (review_id) => {
